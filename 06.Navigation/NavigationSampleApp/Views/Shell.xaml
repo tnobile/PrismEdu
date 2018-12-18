@@ -10,7 +10,7 @@
         prism:ViewModelLocator.AutoWireViewModel="True"
         d:DataContext="{d:DesignInstance Type=ViewModels:ShellViewModel, IsDesignTimeCreatable=True}"
         Title="Shell"
-        Height="300"
+        Height="400"
         Width="300">
     <Grid>
         <Grid.RowDefinitions>
