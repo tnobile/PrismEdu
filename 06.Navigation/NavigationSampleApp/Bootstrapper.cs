@@ -1,13 +1,8 @@
-﻿using NavigationSampleApp.Views;
+﻿using Microsoft.Practices.Unity;
+using NavigationSampleApp.Views;
 using Prism.Unity;
-using Microsoft.Practices.Unity;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using Prism.Modularity;
 
 namespace NavigationSampleApp
 {
@@ -27,11 +22,15 @@ namespace NavigationSampleApp
         {
             base.ConfigureContainer();
 
+            // Viewを全てobject型としてコンテナに登録しておく（RegionManagerで使うため）
             this.Container.RegisterTypes(
                 AllClasses.FromLoadedAssemblies()
                     .Where(x => x.Namespace.EndsWith(".Views")),
                 getFromTypes: _ => new[] { typeof(object) },
                 getName: WithName.TypeName);
+
+            // ViewModelLocatorでViewModelを生成する方法をUnityで行うようにする
+            //ViewModelLocationProvider.SetDefaultViewModelFactory(t => this.Container.Resolve(t));
         }
     }
 }
